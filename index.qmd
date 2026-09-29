@@ -53,9 +53,9 @@ prevalence. Because NHANES is cross-sectional, the identified classes
 are interpreted as patterns of co-occurrence rather than causal pathways
 or developmental trajectories.
 
-## Literature Review
+### Literature Review
 
-### HPV Vaccination Among U.S. Adults
+#### HPV Vaccination Among U.S. Adults
 
 HPV vaccination recommendations in the United States distinguish
 between routine or catch-up vaccination through age 26 and shared
@@ -67,7 +67,7 @@ coverage and disparities across population groups
 that vaccination status may serve as one marker of broader preventive
 health-care access and engagement.
 
-### Metabolic Syndrome and Its Components
+#### Metabolic Syndrome and Its Components
 
 MetS is a cluster of five cardiometabolic abnormalities: central
 adiposity, elevated triglycerides, reduced high-density lipoprotein
@@ -82,7 +82,7 @@ different constellations of abnormalities as equivalent
 therefore provide a more informative account of heterogeneity in
 cardiometabolic risk.
 
-### Depressive Symptoms and Metabolic Health
+#### Depressive Symptoms and Metabolic Health
 
 Depressive symptoms add a clinically important mental-health dimension
 to cardiometabolic heterogeneity. Meta-analytic evidence supports an
@@ -95,7 +95,7 @@ Examining these indicators together may reveal clinically meaningful
 patterns that are not apparent when each measure is analyzed in
 isolation.
 
-### Latent Class Analysis as a Person-Centered Approach
+#### Latent Class Analysis as a Person-Centered Approach
 
 Latent class analysis (LCA) is a person-centered method that identifies
 unobserved subgroups whose members share similar response patterns
