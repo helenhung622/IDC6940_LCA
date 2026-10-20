@@ -1,6 +1,6 @@
 ---
 title: "Latent Profiles of HPV Vaccination, Depressive Symptoms, and Metabolic Syndrome Components"
-subtitle: "Introduction and Literature Review Draft"
+subtitle: "Introduction, Literature Review, and Methods Draft"
 author: "Helen Hung (Advisor: Dr. Cohen)"
 date: "September 21, 2026"
 course: "IDC 6940: Capstone Projects in Data Science"
@@ -28,83 +28,148 @@ therefore reflect not only receipt of a specific cancer-prevention
 intervention but also broader differences in access to and engagement
 with preventive care.
 
-Research on HPV vaccination, depressive symptoms, and metabolic health
-has largely developed along separate lines. Evidence directly
-addressing depressive symptoms in relation to adult HPV-vaccination
-patterns is limited. The closest related NHANES research evaluated
-metabolic syndrome (MetS) in relation to HPV infection rather than
-vaccination and represented MetS primarily as an overall diagnosis
-[@molokwu2017association]. Consequently, little is known about whether
-HPV vaccination, depressive symptoms, and component-specific metabolic
-abnormalities form distinct patterns within the adult population.
-
-Accordingly, this study used National Health and Nutrition Examination
-Survey (NHANES) 2011--2018 data from U.S. adults aged 20--59 years to:
-(1) identify latent classes defined by HPV-vaccination status, high
-depressive symptoms, and the five MetS components; (2) characterize the
-conditional response probabilities and prevalence of the resulting
-classes; and (3) examine whether age, sex, educational attainment, and
-marital status were associated with class membership. We hypothesized
-that distinct profiles would differ in their combinations of
-vaccination, depressive symptoms, and metabolic burden, and that older
-age and lower educational attainment would be associated with classes
-characterized by greater metabolic burden and lower HPV-vaccination
-prevalence. Because NHANES is cross-sectional, the identified classes
-are interpreted as patterns of co-occurrence rather than causal pathways
-or developmental trajectories.
-
-### Literature Review
-
-#### HPV Vaccination Among U.S. Adults
-
-HPV vaccination recommendations in the United States distinguish
-between routine or catch-up vaccination through age 26 and shared
-clinical decision-making for adults aged 27--45 [@CDC2024;
-@meites2019human]. Despite the vaccine's importance for cancer
-prevention, national surveillance has documented incomplete adult
-coverage and disparities across population groups
-[@lewis2022disparities; @lu2021surveillance]. These disparities suggest
-that vaccination status may serve as one marker of broader preventive
-health-care access and engagement.
-
-#### Metabolic Syndrome and Its Components
-
-MetS is a cluster of five cardiometabolic abnormalities: central
-adiposity, elevated triglycerides, reduced high-density lipoprotein
-cholesterol, elevated blood pressure, and impaired glucose regulation
-[@alberti2009harmonizing]. MetS is common among U.S. adults, increases
-markedly with age, and is associated with elevated cardiovascular and
-all-cause mortality risk [@hirode2020trends; @mottillo2010metabolic].
-Although MetS is conventionally defined by the presence of any three of
-its five components, a binary diagnosis treats individuals with
-different constellations of abnormalities as equivalent
+Metabolic syndrome (MetS) is a cluster of five cardiometabolic
+abnormalities: central adiposity, elevated triglycerides, reduced
+high-density lipoprotein cholesterol, elevated blood pressure, and
+impaired glucose regulation [@alberti2009harmonizing]. MetS is common
+among U.S. adults, increases markedly with age, and is associated with
+elevated cardiovascular and all-cause mortality risk
+[@hirode2020trends; @mottillo2010metabolic]. Although MetS is
+conventionally defined by the presence of any three of its five
+components, a binary diagnosis treats individuals with different
+constellations of abnormalities as equivalent
 [@alberti2009harmonizing]. Retaining the individual components may
 therefore provide a more informative account of heterogeneity in
 cardiometabolic risk.
 
-#### Depressive Symptoms and Metabolic Health
-
 Depressive symptoms add a clinically important mental-health dimension
-to cardiometabolic heterogeneity. Meta-analytic evidence supports an
-association between depression and MetS, including evidence that the
-relationship may be bidirectional and that individual MetS components
-differ in their associations with depressive symptoms
-[@kim2023association; @pan2012bidirectional]. However, this literature
-has generally been separate from research on adult HPV vaccination.
-Examining these indicators together may reveal clinically meaningful
-patterns that are not apparent when each measure is analyzed in
-isolation.
+to this heterogeneity. Meta-analytic evidence supports an association
+between depression and MetS, including evidence that the relationship
+may be bidirectional and that individual MetS components differ in
+their associations with depressive symptoms [@kim2023association;
+@pan2012bidirectional]. However, research on HPV vaccination,
+depressive symptoms, and metabolic health has largely developed along
+separate lines. Evidence directly addressing depressive symptoms in
+relation to adult HPV-vaccination patterns is limited. The closest
+related NHANES research evaluated MetS in relation to HPV infection
+rather than vaccination and represented MetS primarily as an overall
+diagnosis [@molokwu2017association]. Consequently, little is known about
+whether HPV vaccination, depressive symptoms, and component-specific
+metabolic abnormalities form distinct patterns within the adult
+population.
 
-#### Latent Class Analysis as a Person-Centered Approach
+Latent class analysis (LCA) provides a person-centered approach to this
+question by identifying unobserved subgroups whose members share
+similar response patterns across multiple indicators. Prior
+cancer-prevention research has used LCA to show that health behaviors
+and risk conditions cluster within population subgroups in ways that
+may be obscured when each factor is examined separately
+[@kang2014latent]. Applying LCA to HPV vaccination, depressive symptoms,
+and the five MetS components may therefore identify multidomain
+prevention profiles that are not captured by a binary MetS diagnosis or
+by a series of variable-centered associations.
 
-Latent class analysis (LCA) is a person-centered method that identifies
-unobserved subgroups whose members share similar response patterns
-across multiple indicators. Prior cancer-prevention research has used
-LCA to show that health behaviors and risk conditions cluster within
-population subgroups in ways that may be obscured when each factor is
-examined separately [@kang2014latent]. Applying LCA to HPV vaccination,
-depressive symptoms, and the five MetS components may therefore identify
-multidomain prevention profiles that are not captured by a binary MetS
-diagnosis or by a series of variable-centered associations.
+Accordingly, this study used NHANES 2011--2018 data from U.S. adults aged
+20--59 years to (1) identify latent classes defined by HPV-vaccination
+status, high depressive symptoms, and the five MetS components; (2)
+characterize the conditional response probabilities and prevalence of
+the resulting classes; and (3) examine whether age, sex, educational
+attainment, and marital status were associated with class membership.
+We hypothesized that distinct profiles would differ in their
+combinations of vaccination, depressive symptoms, and metabolic burden,
+and that older age and lower educational attainment would be associated
+with classes characterized by greater metabolic burden and lower
+HPV-vaccination prevalence. Because NHANES is cross-sectional, the
+identified classes are interpreted as patterns of co-occurrence rather
+than causal pathways or developmental trajectories.
 
-## References
+### Literature Review
+
+#### Metabolic Syndrome and Subsequent Depressive Symptoms
+
+Kim et al. conducted a systematic review and meta-analysis of 11 cohort
+studies involving more than 2.65 million participants
+[@kim2023association]. MetS was associated with a higher subsequent risk
+of depressive symptoms (pooled relative risk = 1.29, 95% CI:
+1.12--1.48), but the authors reported substantial between-study
+heterogeneity. Associations also differed across sex, age, geographic
+region, and individual MetS components. These findings support retaining
+the five metabolic indicators separately in the present analysis rather
+than assuming that a binary MetS diagnosis represents one uniform risk
+pattern. At the same time, the heterogeneity across studies cautions
+against interpreting the depression--MetS relationship as identical in
+all populations.
+
+#### Metabolic Syndrome and HPV Infection in NHANES
+
+Molokwu et al. analyzed NHANES 2003--2010 data to examine the association
+between MetS and seropositivity for HPV types 6, 11, 16, or 18
+[@molokwu2017association]. MetS was associated with higher HPV
+seropositivity in the overall sample (RR = 1.24, 95% CI: 1.03--1.48) and
+among women (RR = 1.26, 95% CI: 1.02--1.56). The corresponding estimate
+among men was higher but not statistically significant. This study is
+particularly relevant because it used a national U.S. sample and linked
+metabolic health with HPV-related outcomes. However, seropositivity
+reflects HPV exposure rather than HPV-vaccination behavior, and MetS was
+modeled primarily as an overall condition. It therefore does not address
+how vaccination, depressive symptoms, and separate metabolic components
+co-occur within individuals.
+
+#### Latent Classes of Cancer Risk Behaviors
+
+Kang et al. applied LCA to five cancer risk behaviors or conditions in
+30,093 U.S. college students: tobacco use, physical inactivity,
+unhealthy diet, binge drinking, and overweight or obesity
+[@kang2014latent]. The analysis identified four classes in the overall
+sample and showed that clustering patterns varied across racial and
+ethnic groups. The study demonstrates how LCA can reveal combinations of
+health risks that would be obscured by examining one behavior at a time.
+Its applicability to the present study is methodological rather than
+population-specific, because the sample consisted of college students
+and several indicators were self-reported. The current study extends
+this person-centered framework to a broader adult population and to a
+combination of preventive, mental-health, and objectively measured
+metabolic indicators.
+
+Together, these studies support examining multidomain health indicators
+as patterned combinations, while also showing that no prior study has
+jointly evaluated adult HPV vaccination, depressive symptoms, and all
+five MetS components using LCA.
+
+## Methods
+
+### Study Design and Data Source
+
+This cross-sectional study used publicly available data from four consecutive cycles of the National Health and Nutrition Examination Survey (NHANES): 2011–2012, 2013–2014, 2015–2016, and 2017–2018. NHANES is conducted by the National Center for Health Statistics (NCHS) and uses a complex, multistage probability design to produce estimates for the civilian, noninstitutionalized U.S. population [@chen2020nhanes; @nchs2018guidelines]. The survey combines household interviews with standardized examinations and laboratory assessments conducted in mobile examination centers.
+
+The analytic data set included 5,731 adults aged 20–59 years with complete data on the study variables. Because fasting glucose and triglycerides were included as latent-class indicators, the primary analytic sample was restricted to participants with a positive adjusted fasting-subsample weight (`wtsaf2yrad > 0`), as recommended for analyses that use fasting-subsample measures. This restriction excluded 224 participants and yielded a primary sample of 5,507. A full-sample sensitivity analysis retained all 5,731 participants.
+
+The NHANES protocols were approved by the National Center for Health Statistics Ethics Review Board, and written informed consent was obtained from all adult participants. The present study was a secondary analysis of deidentified public-use data.
+
+### Measures
+
+**HPV Vaccination.** HPV-vaccination status was derived from the NHANES immunization questionnaire. Participants aged 20–59 years were asked whether they had ever received one or more doses of an HPV vaccine. The cleaned analytic variable was dichotomized as yes versus no. This measure therefore represents initiation of HPV vaccination rather than completion of the recommended vaccine series [@nchs2020immunization; @lewis2022disparities].
+
+**Depressive Symptoms.** Depressive symptoms were assessed with the nine-item Patient Health Questionnaire (PHQ-9), which asks about the frequency of depressive symptoms during the preceding two weeks. Items are scored from 0 to 3 and summed to produce a total score ranging from 0 to 27. Consistent with the established validation study and the coding in the analytic data set, high depressive symptoms were defined as a PHQ-9 score of 10 or higher [@kroenke2001phq9; @nchs2020depression].
+
+**Metabolic Syndrome Components.** Five binary metabolic syndrome (MetS) indicators were included: elevated waist circumference, elevated triglycerides, low high-density lipoprotein cholesterol, elevated blood pressure, and elevated fasting glucose. These indicators correspond to the harmonized MetS framework, under which MetS is defined by the presence of any three or more of the five components [@alberti2009harmonizing].
+
+The reference criteria for the five components are elevated waist circumference (at least 102 cm in men or 88 cm in women when using the U.S. cutoffs); triglycerides of at least 150 mg/dL or relevant treatment; HDL cholesterol below 40 mg/dL in men or 50 mg/dL in women or relevant treatment; systolic blood pressure of at least 130 mm Hg, diastolic blood pressure of at least 85 mm Hg, or antihypertensive treatment; and fasting glucose of at least 100 mg/dL or glucose-lowering treatment [@alberti2009harmonizing].
+
+**Sociodemographic Covariates.** Age was grouped into 20–26, 27–45, and 46–59 years. These categories correspond to HPV-vaccination policy boundaries: catch-up vaccination is recommended through age 26, shared clinical decision-making applies to some adults aged 27–45 years, and HPV vaccines are not licensed for adults older than 45 years [@meites2019human]. Because the data were collected during 2011–2018 and the shared clinical decision-making recommendation was adopted in 2019, these categories were treated as current policy-relevant strata rather than historical eligibility categories [@meites2019human].
+
+Sex/gender was coded as female or male based on the NHANES demographic variable. Educational attainment was collapsed into high school or less versus some college or more. Marital status was categorized as married or living with a partner versus never married or previously married. The underlying variables were obtained from the NHANES demographic files [@nchs2020demographics].
+
+### Statistical Analysis
+
+**Descriptive analyses.** Participant characteristics were summarized as unweighted counts and percentages and survey-weighted percentages. Weighted percentages were calculated using the adjusted fasting-subsample weights for the combined 2011–2018 cycles. The NHANES masked variance strata and primary sampling units were specified to account for the survey's stratified, clustered design [@chen2020nhanes; @lumley2004survey; @nchs2018guidelines]. Survey weights and design variables were used only for the overall descriptive estimates; the latent class models, class summaries, and regression analyses described below were unweighted.
+
+**Latent class analysis.** Exploratory latent class analysis (LCA) was performed using seven binary indicators: initiation of HPV vaccination, elevated depressive symptoms, elevated waist circumference, elevated blood pressure, elevated fasting glucose, low high-density lipoprotein cholesterol, and elevated triglycerides. The models estimated class prevalence and class-specific conditional response probabilities under the assumption of local independence of the indicators within classes [@linzer2011polca; @sinha2021guide]. One- through five-class models were fitted by maximum likelihood using `poLCA` in R. Each model was estimated with 10 alternative starts and then re-estimated with 10 repetitions, including the best starting probabilities from the first stage. The number of classes was evaluated using the Bayesian information criterion (BIC), Akaike information criterion (AIC), normalized entropy, class sizes, average posterior classification probabilities, and substantive interpretability; BIC and interpretability were emphasized in selecting a parsimonious solution [@nylund2007classes; @weller2020bestpractice; @zhou2023latent].
+
+Each participant was assigned to the class with the highest posterior probability. Classes were characterized and labeled using the conditional response probabilities of the seven indicators. Local independence was assessed using pairwise Pearson bivariate residuals, calculated by comparing observed indicator-pair frequencies with those implied by the fitted model; values exceeding 3.84 were flagged for further examination rather than treated as a stand-alone model-selection criterion [@oberski2016dependence]. Multiple correspondence analysis was used only to visualize indicator patterns and assigned classes.
+
+**Class characterization and correlates of class membership.** The distributions of sociodemographic characteristics and the seven indicators were summarized by assigned class using unweighted percentages. Associations of age group, sex/gender, education, and marital status with assigned class were examined in an unweighted multinomial logistic regression model that included all four covariates, with the lowest-risk class as the reference. Exponentiated coefficients were reported as adjusted relative risk ratios with 95% confidence intervals and two-sided *p* values; *p* < .05 was considered statistically significant. Because class assignment was based on the highest posterior probability, the regression did not account for classification uncertainty [@vermunt2010threestep].
+
+**Sensitivity analyses.** First, the five MetS components were replaced by a single binary overall MetS indicator while retaining HPV vaccination and elevated depressive symptoms. One- through three-class solutions were compared using AIC and BIC, and the two-class solution was examined to assess how the indicator definition affected the class profiles. Second, the one- through five-class models were re-estimated in the full sample of 5,731 participants, including 224 participants with zero adjusted fasting-subsample weight. Model-fit indices, class proportions, and conditional response probabilities from the three-class solution were compared with the primary analysis to assess sensitivity to the positive-weight restriction.
+
+Analyses were conducted in R using the `survey`, `poLCA`, `nnet`, `FactoMineR`, `factoextra`, and `tidyverse` packages.
