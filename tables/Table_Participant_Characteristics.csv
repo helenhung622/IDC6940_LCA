@@ -1,0 +1,35 @@
+"Characteristic","Unweighted n (N = 5,507)","Unweighted %","Weighted %"
+"Age group",,,
+"  ≤26 years",898,16.3,17.5
+"  27-45 years",2597,47.2,45.7
+"  ≥46 years",2012,36.5,36.8
+"Gender",,,
+"  Female",2927,53.2,51.8
+"  Male",2580,46.8,48.2
+"Education level",,,
+"  High school or less",2213,40.2,35.8
+"  Some college or more",3294,59.8,64.2
+"Marital status",,,
+"  Married/Partnered",3319,60.3,63
+"  Never/Previously Married",2188,39.7,37
+"High depression symptoms",,,
+"  Yes",428,7.8,7.2
+"  No",5079,92.2,92.8
+"HPV vaccinated",,,
+"  Yes",502,9.1,9.9
+"  No",5005,90.9,90.1
+"Elevated waist circumference",,,
+"  Yes",2862,52,53.3
+"  No",2645,48,46.7
+"Elevated blood pressure",,,
+"  Yes",1316,23.9,21.8
+"  No",4191,76.1,78.2
+"Elevated fasting glucose",,,
+"  Yes",2604,47.3,46.4
+"  No",2903,52.7,53.6
+"Low HDL cholesterol",,,
+"  Yes",1623,29.5,28.4
+"  No",3884,70.5,71.6
+"Elevated triglycerides",,,
+"  Yes",1233,22.4,22.5
+"  No",4274,77.6,77.5
