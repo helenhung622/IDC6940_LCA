@@ -162,11 +162,6 @@ and elevated blood pressure (21.8%). See @tbl-participants for the weighted and 
 
 : Participant characteristics (N = 5,507). {#tbl-participants}
 
-*Note.* Counts are unweighted. Weighted percentages account for the survey
-strata, clusters, and adjusted fasting weights; unweighted percentages
-describe the analytic sample. Percentages may not sum to 100 because of
-rounding.
-
 ### Model Selection
 
 The three-class model had the lowest BIC (38,772.32), with AIC 38,620.20
@@ -187,12 +182,7 @@ perfect classification.
 
 : Fit statistics for the one- through five-class models. {#tbl-fit}
 
-*Note.* All fit statistics are from unweighted models. The one-class
-entropy entry is not applicable: the v6 export stores 1 by convention,
-but normalized classification entropy is not informative for a single
-class. Smallest-class percentages are based on modal assignments.
-
-![AIC and BIC for the one- through five-class unweighted LCA models. Lower values indicate better fit after the respective complexity penalty.](Figure1_Model_Selection_AIC_BIC.png){#fig-selection fig-alt="AIC continues to decrease through five classes; BIC is lowest at three classes."}
+![AIC and BIC for the one- through five-class unweighted LCA models.](Figure1_Model_Selection_AIC_BIC.png){#fig-selection fig-alt="AIC continues to decrease through five classes; BIC is lowest at three classes."}
 
 ### Model Diagnostics
 
@@ -208,10 +198,6 @@ Modal assignments should therefore be treated as uncertain summaries.
 | Assigned Class 3 | 0.175 | &lt;0.001 | 0.825 |
 
 : Average posterior probabilities by assigned class. {#tbl-posterior}
-
-*Note.* Each row averages all posterior probabilities among participants
-assigned to that row's class. The diagonal is the mean probability of
-the assigned class. Rounding may cause small row-sum discrepancies.
 
 Pairwise BVRs ranged from 0.008 to 4.064. HPV vaccine initiation and elevated
 waist circumference were the only pair above the screening value of 3.84
@@ -252,11 +238,7 @@ percentages in the assigned groups (@tbl-probabilities and @fig-profiles).
 
 : Class-specific conditional probabilities of a positive indicator response. {#tbl-probabilities}
 
-*Note.* Values are model-estimated probabilities, rounded to three decimal
-places. Estimates displayed as 0.000 or 1.000 do not prove that the
-corresponding probability is exactly zero or one in the population.
-
-![Conditional response probabilities for the three latent classes. Percentages beside the class names are modal-assignment proportions, not model mixing proportions.](Figure2_Class_Profiles_Heatmap.png){#fig-profiles fig-alt="Three class profiles across seven indicators, showing low HDL concentrated in Class 2 and elevated blood pressure most probable in Class 3."}
+![Conditional response probabilities for the three latent classes.](Figure2_Class_Profiles_Heatmap.png){#fig-profiles fig-alt="Three class profiles across seven indicators, showing low HDL concentrated in Class 2 and elevated blood pressure most probable in Class 3."}
 
 #### Class 1: Relatively Lower Metabolic Burden
 
