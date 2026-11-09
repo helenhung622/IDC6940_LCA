@@ -96,8 +96,6 @@ This cross-sectional study used publicly available data from four consecutive cy
 
 The cleaned data set included 5,731 adults aged 20–59 years with complete data on the study variables. Because fasting glucose and triglycerides were included as latent-class indicators, the primary analytic sample was restricted to participants with a positive adjusted fasting-subsample weight (`wtsaf2yrad > 0`), as recommended for analyses that use fasting-subsample measures. This restriction excluded 224 participants and yielded a primary sample of 5,507.
 
-The NHANES protocols were approved by the National Center for Health Statistics Ethics Review Board, and written informed consent was obtained from all adult participants. The present study was a secondary analysis of deidentified public-use data.
-
 ### Measures
 
 **HPV Vaccination.** HPV-vaccination status was derived from the NHANES immunization questionnaire. In the analytic sample of adults aged 20–59 years, this measure recorded whether participants had ever received at least one HPV vaccine dose. The cleaned analytic variable was dichotomized as yes versus no. This measure therefore represents initiation of HPV vaccination rather than completion of the recommended vaccine series [@nchs2020immunization; @lewis2022disparities].
@@ -232,10 +230,7 @@ exactly.
 | Low HDL cholesterol | 0.073 | 0.787 | 1.764 | 0.008 | 0.082 | — | — |
 | Elevated triglycerides | 0.115 | 1.662 | 3.628 | 1.444 | 2.448 | 0.013 | — |
 
-: Pairwise Pearson bivariate residuals for the three-class model (lower triangle). {#tbl-bvr}
-
-*Note.* Values are Pearson statistics, not correlation coefficients or
-*p* values. Dashes mark the diagonal and unused upper triangle.
+: Pairwise Pearson bivariate residuals for the three-class model. {#tbl-bvr}
 
 ### Latent Class Profiles
 
@@ -339,12 +334,6 @@ associations or tests of demographic predictors.
 
 : Observed characteristics within assigned classes (unweighted percentages). {#tbl-class-characteristics}
 
-*Note.* Percentages are unweighted and rounded as in the v6 export;
-complements may not sum exactly to 100%. These observed percentages can
-differ substantially from the model-estimated probabilities in
-@tbl-probabilities because modal assignment conditions on the response
-patterns.
-
 ## Conclusion
 
 ### Main Findings and Interpretation
@@ -366,31 +355,6 @@ health domains together [@kim2023association; @pan2012bidirectional],
 while prior cancer-risk LCA provides a precedent for examining patterns
 across multiple indicators [@kang2014latent]. Neither line of evidence
 validates the exact classes estimated here.
-
-### Limitations and Future Work
-
-NHANES is cross-sectional, so temporal order and causal mechanisms cannot
-be inferred. Vaccination was self-reported and indicates initiation rather
-than completion. Complete-data selection and the positive fasting-weight
-restriction may affect who is represented. Earlier exclusions and the
-construction of the supplied metabolic flags, including medication
-handling, require a complete preprocessing audit.
-
-Only overall descriptive percentages used the NHANES survey design.
-The unweighted LCA and assigned-class summaries should not be interpreted
-as nationally representative class prevalence. Classification was imperfect
-(entropy 0.659), one indicator pair retained a flagged residual association,
-and the rounded HDL probabilities reached boundary values. Repeated-start
-likelihood records and broader reproducibility checks are needed before
-claiming a globally optimal or fully stable solution. Descriptive
-comparisons across assigned classes do not propagate classification
-uncertainty.
-
-Future work should document the original data-cleaning pathway, examine
-the model's remaining dependence and boundary estimates, and assess
-whether the profiles are reproducible in an independent sample. The
-present findings support a descriptive account of distinct health
-profiles rather than clinical diagnoses or causal claims.
 
 ## References
 

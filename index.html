@@ -2259,7 +2259,6 @@ vertical-align: -.125em;
 <h3 class="anchored" data-anchor-id="study-design-and-data-source">Study Design and Data Source</h3>
 <p>This cross-sectional study used publicly available data from four consecutive cycles of the National Health and Nutrition Examination Survey (NHANES): 2011–2012, 2013–2014, 2015–2016, and 2017–2018. NHANES is conducted by the National Center for Health Statistics (NCHS) and uses a complex, multistage probability design to produce estimates for the civilian, noninstitutionalized U.S. population <span class="citation" data-cites="chen2020nhanes nchs2018guidelines">(<a href="#ref-chen2020nhanes" role="doc-biblioref">Chen et al. 2020</a>; <a href="#ref-nchs2018guidelines" role="doc-biblioref">National Center for Health Statistics 2018</a>)</span>. The survey combines household interviews with standardized examinations and laboratory assessments conducted in mobile examination centers.</p>
 <p>The cleaned data set included 5,731 adults aged 20–59 years with complete data on the study variables. Because fasting glucose and triglycerides were included as latent-class indicators, the primary analytic sample was restricted to participants with a positive adjusted fasting-subsample weight (<code>wtsaf2yrad &gt; 0</code>), as recommended for analyses that use fasting-subsample measures. This restriction excluded 224 participants and yielded a primary sample of 5,507.</p>
-<p>The NHANES protocols were approved by the National Center for Health Statistics Ethics Review Board, and written informed consent was obtained from all adult participants. The present study was a secondary analysis of deidentified public-use data.</p>
 </section>
 <section id="measures" class="level3">
 <h3 class="anchored" data-anchor-id="measures">Measures</h3>
@@ -2626,7 +2625,7 @@ Table 3: Average posterior probabilities by assigned class.
 <div id="tbl-bvr" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-bvr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table 4: Pairwise Pearson bivariate residuals for the three-class model (lower triangle).
+Table 4: Pairwise Pearson bivariate residuals for the three-class model.
 </figcaption>
 <div aria-describedby="tbl-bvr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -2728,7 +2727,6 @@ Table 4: Pairwise Pearson bivariate residuals for the three-class model (lower 
 </div>
 </figure>
 </div>
-<p><em>Note.</em> Values are Pearson statistics, not correlation coefficients or <em>p</em> values. Dashes mark the diagonal and unused upper triangle.</p>
 </section>
 <section id="latent-class-profiles" class="level3">
 <h3 class="anchored" data-anchor-id="latent-class-profiles">Latent Class Profiles</h3>
@@ -3054,7 +3052,6 @@ Table 6: Observed characteristics within assigned classes (unweighted percentag
 </div>
 </figure>
 </div>
-<p><em>Note.</em> Percentages are unweighted and rounded as in the v6 export; complements may not sum exactly to 100%. These observed percentages can differ substantially from the model-estimated probabilities in <a href="#tbl-probabilities" class="quarto-xref">Table 5</a> because modal assignment conditions on the response patterns.</p>
 </section>
 </section>
 <section id="conclusion" class="level2">
@@ -3063,12 +3060,6 @@ Table 6: Observed characteristics within assigned classes (unweighted percentag
 <h3 class="anchored" data-anchor-id="main-findings-and-interpretation">Main Findings and Interpretation</h3>
 <p>The analysis identified three interpretable profiles across HPV vaccine initiation, depressive symptoms, and five MetS components. One profile had relatively lower metabolic burden and comparatively higher vaccine initiation. A second combined low HDL with several metabolic abnormalities and a relatively higher probability of depressive symptoms. A third was distinguished by blood pressure and glucose abnormalities, little low HDL, and very low vaccine initiation.</p>
 <p>These results describe heterogeneity in how measured health characteristics co-occur. They illustrate why separate metabolic components can provide useful detail when describing health profiles. The analysis does not establish that this representation predicts outcomes better than a binary MetS diagnosis. The depression–MetS literature motivates studying both health domains together <span class="citation" data-cites="kim2023association pan2012bidirectional">(<a href="#ref-kim2023association" role="doc-biblioref">Kim et al. 2023</a>; <a href="#ref-pan2012bidirectional" role="doc-biblioref">Pan et al. 2012</a>)</span>, while prior cancer-risk LCA provides a precedent for examining patterns across multiple indicators <span class="citation" data-cites="kang2014latent">(<a href="#ref-kang2014latent" role="doc-biblioref">Kang et al. 2014</a>)</span>. Neither line of evidence validates the exact classes estimated here.</p>
-</section>
-<section id="limitations-and-future-work" class="level3">
-<h3 class="anchored" data-anchor-id="limitations-and-future-work">Limitations and Future Work</h3>
-<p>NHANES is cross-sectional, so temporal order and causal mechanisms cannot be inferred. Vaccination was self-reported and indicates initiation rather than completion. Complete-data selection and the positive fasting-weight restriction may affect who is represented. Earlier exclusions and the construction of the supplied metabolic flags, including medication handling, require a complete preprocessing audit.</p>
-<p>Only overall descriptive percentages used the NHANES survey design. The unweighted LCA and assigned-class summaries should not be interpreted as nationally representative class prevalence. Classification was imperfect (entropy 0.659), one indicator pair retained a flagged residual association, and the rounded HDL probabilities reached boundary values. Repeated-start likelihood records and broader reproducibility checks are needed before claiming a globally optimal or fully stable solution. Descriptive comparisons across assigned classes do not propagate classification uncertainty.</p>
-<p>Future work should document the original data-cleaning pathway, examine the model’s remaining dependence and boundary estimates, and assess whether the profiles are reproducible in an independent sample. The present findings support a descriptive account of distinct health profiles rather than clinical diagnoses or causal claims.</p>
 </section>
 </section>
 <section id="references" class="level2">
