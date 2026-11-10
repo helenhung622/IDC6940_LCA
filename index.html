@@ -2248,10 +2248,76 @@ vertical-align: -.125em;
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<p><strong>Descriptive analyses.</strong> Participant characteristics were summarized as unweighted counts and percentages and survey-weighted percentages. Weighted percentages were calculated using the adjusted fasting-subsample weights for the combined 2011–2018 cycles. The NHANES masked variance strata and primary sampling units were specified to account for the survey’s stratified, clustered design <span class="citation" data-cites="chen2020nhanes lumley2004survey nchs2018guidelines">(<a href="#ref-chen2020nhanes" role="doc-biblioref">Chen et al. 2020</a>; <a href="#ref-lumley2004survey" role="doc-biblioref">Lumley 2004</a>; <a href="#ref-nchs2018guidelines" role="doc-biblioref">National Center for Health Statistics 2018</a>)</span>. Survey weights and design variables were used only for the overall descriptive estimates; the latent class models and class summaries were unweighted.</p>
-<p><strong>Latent class analysis.</strong> Exploratory latent class analysis (LCA) was performed using seven binary indicators: initiation of HPV vaccination, elevated depressive symptoms, elevated waist circumference, elevated blood pressure, elevated fasting glucose, low high-density lipoprotein cholesterol, and elevated triglycerides. The models estimated class prevalence and class-specific conditional response probabilities under the assumption of local independence of the indicators within classes <span class="citation" data-cites="linzer2011polca sinha2021guide">(<a href="#ref-linzer2011polca" role="doc-biblioref">Linzer and Lewis 2011</a>; <a href="#ref-sinha2021guide" role="doc-biblioref">Sinha et al. 2021</a>)</span>. One- through five-class models were fitted by maximum likelihood using <code>poLCA</code> in R. Each model was estimated with 10 alternative starts and then re-estimated with 10 repetitions, including the best starting probabilities from the first stage. The number of classes was evaluated using the Bayesian information criterion (BIC), Akaike information criterion (AIC), normalized entropy, class sizes, average posterior classification probabilities, and substantive interpretability; BIC and interpretability were emphasized in selecting a parsimonious solution <span class="citation" data-cites="nylund2007classes weller2020bestpractice zhou2023latent">(<a href="#ref-nylund2007classes" role="doc-biblioref">Nylund et al. 2007</a>; <a href="#ref-weller2020bestpractice" role="doc-biblioref">Weller et al. 2020</a>; <a href="#ref-zhou2023latent" role="doc-biblioref">Zhou et al. 2023</a>)</span>.</p>
-<p>Each participant was assigned to the class with the highest posterior probability. Classes were characterized and labeled using the conditional response probabilities of the seven indicators. Local independence was assessed using pairwise Pearson bivariate residuals, calculated by comparing observed indicator-pair frequencies with those implied by the fitted model; values exceeding 3.84 were flagged for further examination rather than treated as a stand-alone model-selection criterion <span class="citation" data-cites="oberski2016dependence">(<a href="#ref-oberski2016dependence" role="doc-biblioref">Oberski 2016</a>)</span>.</p>
-<p><strong>Class characterization.</strong> Class labels summarize the model-estimated response probabilities. Demographic characteristics and the seven indicators were also summarized using unweighted percentages within the assigned classes.</p>
+<section id="latent-class-analysis-and-model-assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="latent-class-analysis-and-model-assumptions">Latent Class Analysis and Model Assumptions</h3>
+<p>LCA identifies unobserved groups from response patterns across multiple indicators. This study used seven binary indicators for exploratory LCA: HPV vaccine initiation, elevated depressive symptoms, elevated waist circumference, elevated blood pressure, elevated fasting glucose, low HDL cholesterol, and elevated triglycerides. The model estimates the proportion of each class and the probability of a “yes” response to each indicator within each class. It assumes local independence, meaning that indicator responses are independent given a participant’s latent class <span class="citation" data-cites="linzer2011polca sinha2021guide">(<a href="#ref-linzer2011polca" role="doc-biblioref">Linzer and Lewis 2011</a>; <a href="#ref-sinha2021guide" role="doc-biblioref">Sinha et al. 2021</a>)</span>.</p>
+<p>Let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold-italic">𝒀</mi><annotation encoding="application/x-tex">\mathbf{Y}</annotation></semantics></math> represent a person’s complete set of indicator responses and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold-italic">𝒚</mi><annotation encoding="application/x-tex">\mathbf{y}</annotation></semantics></math> the observed response pattern. The <strong>LCA mixture probability equation</strong> is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mi mathvariant="bold-italic">𝒀</mi><mo>=</mo><mi mathvariant="bold-italic">𝒚</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></munderover><msub><mi>π</mi><mi>k</mi></msub><munderover><mo>∏</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>J</mi></munderover><mi>P</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>Y</mi><mi>j</mi></msub><mo>=</mo><msub><mi>y</mi><mi>j</mi></msub><mo>∣</mo><mi>C</mi><mo>=</mo><mi>k</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">
+P(\mathbf{Y}=\mathbf{y})
+=\sum_{k=1}^{K}\pi_k
+\prod_{j=1}^{J}P(Y_j=y_j\mid C=k)
+</annotation></semantics></math></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Meaning in this study</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold-italic">𝒀</mi><annotation encoding="application/x-tex">\mathbf{Y}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold-italic">𝒚</mi><annotation encoding="application/x-tex">\mathbf{y}</annotation></semantics></math></td>
+<td>A person’s complete set of indicator responses and the observed response pattern.</td>
+</tr>
+<tr class="even">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Y</mi><mi>j</mi></msub><annotation encoding="application/x-tex">Y_j</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>y</mi><mi>j</mi></msub><annotation encoding="application/x-tex">y_j</annotation></semantics></math></td>
+<td>Indicator <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math> and its observed “yes” or “no” response.</td>
+</tr>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math> represents the latent class, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math> identifies a particular class.</td>
+</tr>
+<tr class="even">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math></td>
+<td>The total number of latent classes. This study compared one- through five-class models and selected three classes, so <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">K=3</annotation></semantics></math> in the final model.</td>
+</tr>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>J</mi><annotation encoding="application/x-tex">J</annotation></semantics></math></td>
+<td>The total number of indicators. This study used seven, so <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi><mo>=</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">J=7</annotation></semantics></math>.</td>
+</tr>
+<tr class="even">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mi>k</mi></msub><mo>=</mo><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mi>C</mi><mo>=</mo><mi>k</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\pi_k=P(C=k)</annotation></semantics></math></td>
+<td>The model-estimated proportion of class <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>. Class proportions range from <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math> to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math> and satisfy <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></msubsup><msub><mi>π</mi><mi>k</mi></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\sum_{k=1}^{K}\pi_k=1</annotation></semantics></math>.</td>
+</tr>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>Y</mi><mi>j</mi></msub><mo>=</mo><msub><mi>y</mi><mi>j</mi></msub><mo>∣</mo><mi>C</mi><mo>=</mo><mi>k</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">P(Y_j=y_j\mid C=k)</annotation></semantics></math></td>
+<td>The probability of the observed response to indicator <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math> within class <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>. For example, the probability of a “yes” response to low HDL cholesterol within Class 2.</td>
+</tr>
+<tr class="even">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∏</mo><annotation encoding="application/x-tex">\prod</annotation></semantics></math></td>
+<td>Multiplies the probabilities of the seven responses within the same class.</td>
+</tr>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∑</mo><annotation encoding="application/x-tex">\sum</annotation></semantics></math></td>
+<td>Adds the results across classes after multiplying each class’s result by its class proportion.</td>
+</tr>
+</tbody>
+</table>
+<p>In this study, each participant has a health profile made up of HPV vaccination, depressive symptoms, and five metabolic indicators. For example, a participant may be unvaccinated against HPV and have elevated blood pressure and fasting glucose. The model combines these responses with the other four indicators to calculate the probability of the complete response pattern within each latent class, then weights those probabilities by the model-estimated class proportions and adds them together. In the selected three-class model, the equation combines information from three health profiles to describe how likely different combinations of indicators are to occur in the data <span class="citation" data-cites="linzer2011polca">(<a href="#ref-linzer2011polca" role="doc-biblioref">Linzer and Lewis 2011</a>)</span>.</p>
+<p><strong>Local independence assumption.</strong> Given a latent class, this study assumes that responses to HPV vaccination, depressive symptoms, and the five metabolic indicators are independent. For the participant described above, the model multiplies the conditional probabilities of “no HPV vaccination,” “elevated blood pressure,” “elevated fasting glucose,” and the four other observed responses within each class. This assumption concerns relationships within the same latent class. Indicators such as blood pressure and glucose may still be related in the overall sample. BVRs are then used to check how well the estimated classes reproduce the pairwise relationships among these indicators.</p>
+</section>
+<section id="model-estimation-and-selection" class="level3">
+<h3 class="anchored" data-anchor-id="model-estimation-and-selection">Model Estimation and Selection</h3>
+<p>One- through five-class models were estimated by maximum likelihood using the R package <code>poLCA</code>. Each model was first fitted with 10 alternative starts and then estimated with 10 repetitions, including the best starting probabilities from the first stage. Class selection considered the Bayesian information criterion (BIC), Akaike information criterion (AIC), normalized entropy, class sizes, average posterior classification probabilities, and substantive interpretability. BIC and interpretability were the main criteria <span class="citation" data-cites="nylund2007classes weller2020bestpractice zhou2023latent">(<a href="#ref-nylund2007classes" role="doc-biblioref">Nylund et al. 2007</a>; <a href="#ref-weller2020bestpractice" role="doc-biblioref">Weller et al. 2020</a>; <a href="#ref-zhou2023latent" role="doc-biblioref">Zhou et al. 2023</a>)</span>.</p>
+</section>
+<section id="class-assignment-and-diagnostics" class="level3">
+<h3 class="anchored" data-anchor-id="class-assignment-and-diagnostics">Class Assignment and Diagnostics</h3>
+<p>Each participant was assigned to the class with the highest posterior probability. Classes were described and named using the conditional response probabilities of the seven indicators. Pairwise Pearson bivariate residuals (BVRs) compared observed indicator-pair frequencies with model-predicted frequencies to assess local independence <span class="citation" data-cites="oberski2016dependence">(<a href="#ref-oberski2016dependence" role="doc-biblioref">Oberski 2016</a>)</span>.</p>
+</section>
 </section>
 <section id="analysis-and-results" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-and-results">Analysis and Results</h2>
@@ -2262,15 +2328,16 @@ vertical-align: -.125em;
 </section>
 <section id="measures" class="level3">
 <h3 class="anchored" data-anchor-id="measures">Measures</h3>
-<p><strong>HPV Vaccination.</strong> HPV-vaccination status was derived from the NHANES immunization questionnaire. In the analytic sample of adults aged 20–59 years, this measure recorded whether participants had ever received at least one HPV vaccine dose. The cleaned analytic variable was dichotomized as yes versus no. This measure therefore represents initiation of HPV vaccination rather than completion of the recommended vaccine series <span class="citation" data-cites="nchs2020immunization lewis2022disparities">(<a href="#ref-nchs2020immunization" role="doc-biblioref">National Center for Health Statistics 2020b</a>; <a href="#ref-lewis2022disparities" role="doc-biblioref">Lewis and Markowitz 2022</a>)</span>.</p>
+<p><strong>HPV Vaccination.</strong> HPV-vaccination status was derived from the NHANES immunization questionnaire. In the analytic sample of adults aged 20–59 years, this measure recorded whether participants had ever received at least one HPV vaccine dose. The cleaned analytic variable was dichotomized as yes versus no. This measure reflects vaccine initiation, including receipt of a single dose <span class="citation" data-cites="nchs2020immunization lewis2022disparities">(<a href="#ref-nchs2020immunization" role="doc-biblioref">National Center for Health Statistics 2020b</a>; <a href="#ref-lewis2022disparities" role="doc-biblioref">Lewis and Markowitz 2022</a>)</span>.</p>
 <p><strong>Depressive Symptoms.</strong> Depressive symptoms were assessed with the nine-item Patient Health Questionnaire (PHQ-9), which asks about the frequency of depressive symptoms during the preceding two weeks. Items are scored from 0 to 3 and summed to produce a total score ranging from 0 to 27. Consistent with the established validation study and the coding in the analytic data set, high depressive symptoms were defined as a PHQ-9 score of 10 or higher <span class="citation" data-cites="kroenke2001phq9 nchs2020depression">(<a href="#ref-kroenke2001phq9" role="doc-biblioref">Kroenke et al. 2001</a>; <a href="#ref-nchs2020depression" role="doc-biblioref">National Center for Health Statistics 2020c</a>)</span>.</p>
 <p><strong>Metabolic Syndrome Components.</strong> Five binary metabolic syndrome (MetS) indicators were included: elevated waist circumference, elevated triglycerides, low high-density lipoprotein cholesterol, elevated blood pressure, and elevated fasting glucose. These indicators correspond to the harmonized MetS framework, under which MetS is defined by the presence of any three or more of the five components <span class="citation" data-cites="alberti2009harmonizing">(<a href="#ref-alberti2009harmonizing" role="doc-biblioref">Alberti et al. 2009</a>)</span>.</p>
 <p>The reference criteria for the five components are elevated waist circumference (at least 102 cm in men or 88 cm in women when using the U.S. cutoffs); triglycerides of at least 150 mg/dL or relevant treatment; HDL cholesterol below 40 mg/dL in men or 50 mg/dL in women or relevant treatment; systolic blood pressure of at least 130 mm Hg, diastolic blood pressure of at least 85 mm Hg, or antihypertensive treatment; and fasting glucose of at least 100 mg/dL or glucose-lowering treatment <span class="citation" data-cites="alberti2009harmonizing">(<a href="#ref-alberti2009harmonizing" role="doc-biblioref">Alberti et al. 2009</a>)</span>. The analysis used preconstructed indicators from the cleaned file. The upstream implementation of these thresholds and medication rules still requires verification.</p>
-<p><strong>Sociodemographic Characteristics.</strong> Age was grouped into 20–26, 27–45, and 46–59 years. These categories correspond to HPV-vaccination policy boundaries: catch-up vaccination is recommended through age 26, shared clinical decision-making applies to some adults aged 27–45 years, and HPV vaccines are not licensed for adults older than 45 years <span class="citation" data-cites="meites2019human">(<a href="#ref-meites2019human" role="doc-biblioref">Meites 2019</a>)</span>. Because the data were collected during 2011–2018 and the shared clinical decision-making recommendation was adopted in 2019, these categories were treated as current policy-relevant strata rather than historical eligibility categories <span class="citation" data-cites="meites2019human">(<a href="#ref-meites2019human" role="doc-biblioref">Meites 2019</a>)</span>.</p>
+<p><strong>Sociodemographic Characteristics.</strong> Age was grouped into 20–26, 27–45, and 46–59 years. These categories correspond to HPV-vaccination policy boundaries: catch-up vaccination is recommended through age 26, shared clinical decision-making applies to some adults aged 27–45 years, and HPV vaccines are not licensed for adults older than 45 years <span class="citation" data-cites="meites2019human">(<a href="#ref-meites2019human" role="doc-biblioref">Meites 2019</a>)</span>. Because the data were collected during 2011–2018 and the shared clinical decision-making recommendation was adopted in 2019, these categories reflect current policy boundaries. Eligibility during data collection depended on the policies in place at that time <span class="citation" data-cites="meites2019human">(<a href="#ref-meites2019human" role="doc-biblioref">Meites 2019</a>)</span>.</p>
 <p>Sex/gender was coded as female or male based on the NHANES demographic variable. Educational attainment was collapsed into high school or less versus some college or more. Marital status was categorized as married or living with a partner versus never married or previously married. The underlying variables were obtained from the NHANES demographic files <span class="citation" data-cites="nchs2020demographics">(<a href="#ref-nchs2020demographics" role="doc-biblioref">National Center for Health Statistics 2020a</a>)</span>.</p>
 </section>
 <section id="exploratory-data-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="exploratory-data-analysis">Exploratory Data Analysis</h3>
+<p>Overall weighted percentages used the adjusted fasting-subsample weights for the combined 2011–2018 cycles, together with the NHANES masked variance strata and primary sampling units <span class="citation" data-cites="chen2020nhanes lumley2004survey nchs2018guidelines">(<a href="#ref-chen2020nhanes" role="doc-biblioref">Chen et al. 2020</a>; <a href="#ref-lumley2004survey" role="doc-biblioref">Lumley 2004</a>; <a href="#ref-nchs2018guidelines" role="doc-biblioref">National Center for Health Statistics 2018</a>)</span>.</p>
 <p>The analytic sample was 53.2% female before weighting and 51.8% female after weighting. Survey-weighted percentages were 17.5% for ages 20–26, 45.7% for ages 27–45, and 36.8% for ages 46–59. Some college education or more was reported by 64.2%, and 63.0% were married or partnered.</p>
 <p>HPV vaccine initiation was reported by 9.9% in weighted estimates, and 7.2% had elevated depressive symptoms. Elevated waist circumference (53.3%) and fasting glucose (46.4%) were the most common metabolic indicators, followed by low HDL (28.4%), elevated triglycerides (22.5%), and elevated blood pressure (21.8%). See <a href="#tbl-participants" class="quarto-xref">Table 1</a> for the weighted and unweighted summaries.</p>
 <div id="tbl-participants" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2727,70 +2794,7 @@ Table 4: Pairwise Pearson bivariate residuals for the three-class model.
 </section>
 <section id="latent-class-profiles" class="level3">
 <h3 class="anchored" data-anchor-id="latent-class-profiles">Latent Class Profiles</h3>
-<p>Modal posterior assignment produced 2,029 participants in Class 1 (36.8%), 1,414 in Class 2 (25.7%), and 2,064 in Class 3 (37.5%). These are unweighted assigned-class proportions. The profiles below are described using the model’s conditional response probabilities, which differ from observed percentages in the assigned groups (<a href="#tbl-probabilities" class="quarto-xref">Table 5</a> and <a href="#fig-profiles" class="quarto-xref">Figure 2</a>).</p>
-<div id="tbl-probabilities" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-probabilities-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table 5: Class-specific conditional probabilities of a positive indicator response.
-</figcaption>
-<div aria-describedby="tbl-probabilities-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Indicator</th>
-<th>Class 1</th>
-<th>Class 2</th>
-<th>Class 3</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Elevated depressive symptoms</td>
-<td>0.041</td>
-<td>0.133</td>
-<td>0.079</td>
-</tr>
-<tr class="even">
-<td>HPV vaccine initiation</td>
-<td>0.170</td>
-<td>0.068</td>
-<td>0.028</td>
-</tr>
-<tr class="odd">
-<td>Elevated waist circumference</td>
-<td>0.289</td>
-<td>0.780</td>
-<td>0.583</td>
-</tr>
-<tr class="even">
-<td>Elevated blood pressure</td>
-<td>0.036</td>
-<td>0.319</td>
-<td>0.388</td>
-</tr>
-<tr class="odd">
-<td>Elevated fasting glucose</td>
-<td>0.182</td>
-<td>0.673</td>
-<td>0.633</td>
-</tr>
-<tr class="even">
-<td>Low HDL cholesterol</td>
-<td>0.142</td>
-<td>1.000</td>
-<td>0.000</td>
-</tr>
-<tr class="odd">
-<td>Elevated triglycerides</td>
-<td>0.048</td>
-<td>0.511</td>
-<td>0.215</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
+<p>Modal posterior assignment produced 2,029 participants in Class 1 (36.8%), 1,414 in Class 2 (25.7%), and 2,064 in Class 3 (37.5%). These are unweighted assigned-class proportions. The profiles below are described using the model’s conditional response probabilities, which differ from observed percentages in the assigned groups (see <a href="#fig-profiles" class="quarto-xref">Figure 2</a>).</p>
 <div id="fig-profiles" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three class profiles across seven indicators, showing low HDL concentrated in Class 2 and elevated blood pressure most probable in Class 3.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-profiles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -2805,12 +2809,12 @@ Figure 2: Conditional response probabilities for the three latent classes.
 <h4 class="anchored" data-anchor-id="class-1-relatively-lower-metabolic-burden">Class 1: Relatively Lower Metabolic Burden</h4>
 <p>Class 1 had the lowest probabilities of elevated blood pressure (0.036), fasting glucose (0.182), triglycerides (0.048), and depressive symptoms (0.041). Its HPV vaccine initiation probability was comparatively higher (0.170), but vaccination remained uncommon. Elevated waist circumference still had a probability of 0.289, so the class should not be interpreted as free of metabolic abnormalities.</p>
 </section>
-<section id="class-2-lipid-related-and-multicomponent-metabolic-burden" class="level4">
-<h4 class="anchored" data-anchor-id="class-2-lipid-related-and-multicomponent-metabolic-burden">Class 2: Lipid-related and Multicomponent Metabolic Burden</h4>
+<section id="class-2-lipid-abnormalities-and-multiple-metabolic-abnormalities" class="level4">
+<h4 class="anchored" data-anchor-id="class-2-lipid-abnormalities-and-multiple-metabolic-abnormalities">Class 2: Lipid Abnormalities and Multiple Metabolic Abnormalities</h4>
 <p>Class 2 had the highest probabilities of low HDL (1.000), elevated waist circumference (0.780), fasting glucose (0.673), and triglycerides (0.511). The probability of elevated depressive symptoms was also highest (0.133), while HPV vaccine initiation was 0.068. The label describes a relative pattern; most members were not estimated to have elevated depressive symptoms.</p>
 </section>
-<section id="class-3-blood-pressure-and-glucose-burden-with-low-hpv-vaccination" class="level4">
-<h4 class="anchored" data-anchor-id="class-3-blood-pressure-and-glucose-burden-with-low-hpv-vaccination">Class 3: Blood Pressure and Glucose Burden with Low HPV Vaccination</h4>
+<section id="class-3-prominent-blood-pressure-and-glucose-abnormalities-with-low-hpv-vaccination" class="level4">
+<h4 class="anchored" data-anchor-id="class-3-prominent-blood-pressure-and-glucose-abnormalities-with-low-hpv-vaccination">Class 3: Prominent Blood Pressure and Glucose Abnormalities with Low HPV Vaccination</h4>
 <p>Class 3 had the highest probability of elevated blood pressure (0.388), with prominent elevated fasting glucose (0.633) and waist circumference (0.583). Low HDL had an estimated probability of 0.000, distinguishing this class from Class 2. HPV vaccine initiation was lowest (0.028), and elevated depressive symptoms had a probability of 0.079. The different lipid and blood-pressure patterns make a single low-to-high risk ranking of the classes incomplete.</p>
 </section>
 </section>
@@ -2820,7 +2824,7 @@ Figure 2: Conditional response probabilities for the three latent classes.
 <div id="tbl-class-characteristics" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-class-characteristics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table 6: Observed characteristics within assigned classes (unweighted percentages).
+Table 5: Observed characteristics within assigned classes (unweighted percentages).
 </figcaption>
 <div aria-describedby="tbl-class-characteristics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">

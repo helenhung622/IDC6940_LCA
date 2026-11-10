@@ -11,6 +11,7 @@ format:
     toc-title: "Contents"
     toc-depth: 2
     embed-resources: true
+    html-math-method: mathml
 ---
 
 ## Introduction
@@ -80,13 +81,41 @@ it does not establish causal pathways or developmental trajectories.
 
 ## Methods
 
-**Descriptive analyses.** Participant characteristics were summarized as unweighted counts and percentages and survey-weighted percentages. Weighted percentages were calculated using the adjusted fasting-subsample weights for the combined 2011–2018 cycles. The NHANES masked variance strata and primary sampling units were specified to account for the survey's stratified, clustered design [@chen2020nhanes; @lumley2004survey; @nchs2018guidelines]. Survey weights and design variables were used only for the overall descriptive estimates; the latent class models and class summaries were unweighted.
+### Latent Class Analysis and Model Assumptions
 
-**Latent class analysis.** Exploratory latent class analysis (LCA) was performed using seven binary indicators: initiation of HPV vaccination, elevated depressive symptoms, elevated waist circumference, elevated blood pressure, elevated fasting glucose, low high-density lipoprotein cholesterol, and elevated triglycerides. The models estimated class prevalence and class-specific conditional response probabilities under the assumption of local independence of the indicators within classes [@linzer2011polca; @sinha2021guide]. One- through five-class models were fitted by maximum likelihood using `poLCA` in R. Each model was estimated with 10 alternative starts and then re-estimated with 10 repetitions, including the best starting probabilities from the first stage. The number of classes was evaluated using the Bayesian information criterion (BIC), Akaike information criterion (AIC), normalized entropy, class sizes, average posterior classification probabilities, and substantive interpretability; BIC and interpretability were emphasized in selecting a parsimonious solution [@nylund2007classes; @weller2020bestpractice; @zhou2023latent].
+LCA identifies unobserved groups from response patterns across multiple indicators. This study used seven binary indicators for exploratory LCA: HPV vaccine initiation, elevated depressive symptoms, elevated waist circumference, elevated blood pressure, elevated fasting glucose, low HDL cholesterol, and elevated triglycerides. The model estimates the proportion of each class and the probability of a “yes” response to each indicator within each class. It assumes local independence, meaning that indicator responses are independent given a participant's latent class [@linzer2011polca; @sinha2021guide].
 
-Each participant was assigned to the class with the highest posterior probability. Classes were characterized and labeled using the conditional response probabilities of the seven indicators. Local independence was assessed using pairwise Pearson bivariate residuals, calculated by comparing observed indicator-pair frequencies with those implied by the fitted model; values exceeding 3.84 were flagged for further examination rather than treated as a stand-alone model-selection criterion [@oberski2016dependence].
+Let $\mathbf{Y}$ represent a person's complete set of indicator responses and $\mathbf{y}$ the observed response pattern. The **LCA mixture probability equation** is
 
-**Class characterization.** Class labels summarize the model-estimated response probabilities. Demographic characteristics and the seven indicators were also summarized using unweighted percentages within the assigned classes.
+$$
+P(\mathbf{Y}=\mathbf{y})
+=\sum_{k=1}^{K}\pi_k
+\prod_{j=1}^{J}P(Y_j=y_j\mid C=k)
+$$
+
+| Symbol | Meaning in this study |
+| --- | --- |
+| $\mathbf{Y}$, $\mathbf{y}$ | A person's complete set of indicator responses and the observed response pattern. |
+| $Y_j$, $y_j$ | Indicator $j$ and its observed “yes” or “no” response. |
+| $C$, $k$ | $C$ represents the latent class, and $k$ identifies a particular class. |
+| $K$ | The total number of latent classes. This study compared one- through five-class models and selected three classes, so $K=3$ in the final model. |
+| $J$ | The total number of indicators. This study used seven, so $J=7$. |
+| $\pi_k=P(C=k)$ | The model-estimated proportion of class $k$. Class proportions range from $0$ to $1$ and satisfy $\sum_{k=1}^{K}\pi_k=1$. |
+| $P(Y_j=y_j\mid C=k)$ | The probability of the observed response to indicator $j$ within class $k$. For example, the probability of a “yes” response to low HDL cholesterol within Class 2. |
+| $\prod$ | Multiplies the probabilities of the seven responses within the same class. |
+| $\sum$ | Adds the results across classes after multiplying each class's result by its class proportion. |
+
+In this study, each participant has a health profile made up of HPV vaccination, depressive symptoms, and five metabolic indicators. For example, a participant may be unvaccinated against HPV and have elevated blood pressure and fasting glucose. The model combines these responses with the other four indicators to calculate the probability of the complete response pattern within each latent class, then weights those probabilities by the model-estimated class proportions and adds them together. In the selected three-class model, the equation combines information from three health profiles to describe how likely different combinations of indicators are to occur in the data [@linzer2011polca].
+
+**Local independence assumption.** Given a latent class, this study assumes that responses to HPV vaccination, depressive symptoms, and the five metabolic indicators are independent. For the participant described above, the model multiplies the conditional probabilities of “no HPV vaccination,” “elevated blood pressure,” “elevated fasting glucose,” and the four other observed responses within each class. This assumption concerns relationships within the same latent class. Indicators such as blood pressure and glucose may still be related in the overall sample. BVRs are then used to check how well the estimated classes reproduce the pairwise relationships among these indicators.
+
+### Model Estimation and Selection
+
+One- through five-class models were estimated by maximum likelihood using the R package `poLCA`. Each model was first fitted with 10 alternative starts and then estimated with 10 repetitions, including the best starting probabilities from the first stage. Class selection considered the Bayesian information criterion (BIC), Akaike information criterion (AIC), normalized entropy, class sizes, average posterior classification probabilities, and substantive interpretability. BIC and interpretability were the main criteria [@nylund2007classes; @weller2020bestpractice; @zhou2023latent].
+
+### Class Assignment and Diagnostics
+
+Each participant was assigned to the class with the highest posterior probability. Classes were described and named using the conditional response probabilities of the seven indicators. Pairwise Pearson bivariate residuals (BVRs) compared observed indicator-pair frequencies with model-predicted frequencies to assess local independence [@oberski2016dependence].
 
 ## Analysis and Results
 
@@ -98,7 +127,7 @@ The cleaned data set included 5,731 adults aged 20–59 years with complete data
 
 ### Measures
 
-**HPV Vaccination.** HPV-vaccination status was derived from the NHANES immunization questionnaire. In the analytic sample of adults aged 20–59 years, this measure recorded whether participants had ever received at least one HPV vaccine dose. The cleaned analytic variable was dichotomized as yes versus no. This measure therefore represents initiation of HPV vaccination rather than completion of the recommended vaccine series [@nchs2020immunization; @lewis2022disparities].
+**HPV Vaccination.** HPV-vaccination status was derived from the NHANES immunization questionnaire. In the analytic sample of adults aged 20–59 years, this measure recorded whether participants had ever received at least one HPV vaccine dose. The cleaned analytic variable was dichotomized as yes versus no. This measure reflects vaccine initiation, including receipt of a single dose [@nchs2020immunization; @lewis2022disparities].
 
 **Depressive Symptoms.** Depressive symptoms were assessed with the nine-item Patient Health Questionnaire (PHQ-9), which asks about the frequency of depressive symptoms during the preceding two weeks. Items are scored from 0 to 3 and summed to produce a total score ranging from 0 to 27. Consistent with the established validation study and the coding in the analytic data set, high depressive symptoms were defined as a PHQ-9 score of 10 or higher [@kroenke2001phq9; @nchs2020depression].
 
@@ -106,11 +135,13 @@ The cleaned data set included 5,731 adults aged 20–59 years with complete data
 
 The reference criteria for the five components are elevated waist circumference (at least 102 cm in men or 88 cm in women when using the U.S. cutoffs); triglycerides of at least 150 mg/dL or relevant treatment; HDL cholesterol below 40 mg/dL in men or 50 mg/dL in women or relevant treatment; systolic blood pressure of at least 130 mm Hg, diastolic blood pressure of at least 85 mm Hg, or antihypertensive treatment; and fasting glucose of at least 100 mg/dL or glucose-lowering treatment [@alberti2009harmonizing]. The analysis used preconstructed indicators from the cleaned file. The upstream implementation of these thresholds and medication rules still requires verification.
 
-**Sociodemographic Characteristics.** Age was grouped into 20–26, 27–45, and 46–59 years. These categories correspond to HPV-vaccination policy boundaries: catch-up vaccination is recommended through age 26, shared clinical decision-making applies to some adults aged 27–45 years, and HPV vaccines are not licensed for adults older than 45 years [@meites2019human]. Because the data were collected during 2011–2018 and the shared clinical decision-making recommendation was adopted in 2019, these categories were treated as current policy-relevant strata rather than historical eligibility categories [@meites2019human].
+**Sociodemographic Characteristics.** Age was grouped into 20–26, 27–45, and 46–59 years. These categories correspond to HPV-vaccination policy boundaries: catch-up vaccination is recommended through age 26, shared clinical decision-making applies to some adults aged 27–45 years, and HPV vaccines are not licensed for adults older than 45 years [@meites2019human]. Because the data were collected during 2011–2018 and the shared clinical decision-making recommendation was adopted in 2019, these categories reflect current policy boundaries. Eligibility during data collection depended on the policies in place at that time [@meites2019human].
 
 Sex/gender was coded as female or male based on the NHANES demographic variable. Educational attainment was collapsed into high school or less versus some college or more. Marital status was categorized as married or living with a partner versus never married or previously married. The underlying variables were obtained from the NHANES demographic files [@nchs2020demographics].
 
 ### Exploratory Data Analysis
+
+Overall weighted percentages used the adjusted fasting-subsample weights for the combined 2011–2018 cycles, together with the NHANES masked variance strata and primary sampling units [@chen2020nhanes; @lumley2004survey; @nchs2018guidelines].
 
 The analytic sample was 53.2% female before weighting and 51.8% female after
 weighting. Survey-weighted percentages were 17.5% for ages 20–26, 45.7%
@@ -224,19 +255,7 @@ Modal posterior assignment produced 2,029 participants in Class 1 (36.8%),
 1,414 in Class 2 (25.7%), and 2,064 in Class 3 (37.5%). These are unweighted
 assigned-class proportions. The profiles below are described using the
 model's conditional response probabilities, which differ from observed
-percentages in the assigned groups (@tbl-probabilities and @fig-profiles).
-
-| Indicator | Class 1 | Class 2 | Class 3 |
-| --- | --- | --- | --- |
-| Elevated depressive symptoms | 0.041 | 0.133 | 0.079 |
-| HPV vaccine initiation | 0.170 | 0.068 | 0.028 |
-| Elevated waist circumference | 0.289 | 0.780 | 0.583 |
-| Elevated blood pressure | 0.036 | 0.319 | 0.388 |
-| Elevated fasting glucose | 0.182 | 0.673 | 0.633 |
-| Low HDL cholesterol | 0.142 | 1.000 | 0.000 |
-| Elevated triglycerides | 0.048 | 0.511 | 0.215 |
-
-: Class-specific conditional probabilities of a positive indicator response. {#tbl-probabilities}
+percentages in the assigned groups (see @fig-profiles).
 
 ![Conditional response probabilities for the three latent classes.](Figure2_Class_Profiles_Heatmap.png){#fig-profiles fig-alt="Three class profiles across seven indicators, showing low HDL concentrated in Class 2 and elevated blood pressure most probable in Class 3."}
 
@@ -249,7 +268,7 @@ fasting glucose (0.182), triglycerides (0.048), and depressive symptoms
 still had a probability of 0.289, so the class should not be interpreted
 as free of metabolic abnormalities.
 
-#### Class 2: Lipid-related and Multicomponent Metabolic Burden
+#### Class 2: Lipid Abnormalities and Multiple Metabolic Abnormalities
 
 Class 2 had the highest probabilities of low HDL (1.000), elevated waist
 circumference (0.780), fasting glucose (0.673), and triglycerides (0.511).
@@ -258,7 +277,7 @@ while HPV vaccine initiation was 0.068. The label describes a relative
 pattern; most members were not estimated to have elevated depressive
 symptoms.
 
-#### Class 3: Blood Pressure and Glucose Burden with Low HPV Vaccination
+#### Class 3: Prominent Blood Pressure and Glucose Abnormalities with Low HPV Vaccination
 
 Class 3 had the highest probability of elevated blood pressure (0.388),
 with prominent elevated fasting glucose (0.633) and waist circumference
